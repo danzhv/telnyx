@@ -1,0 +1,12 @@
+{
+    "include": [
+        "./node_modules/cypress",
+        "cypress/**/*.js"
+    ],
+    "compilerOptions": {
+        "allowJs": true,
+        "baseUrl": "./",
+        "types": ["@shelex/cypress-allure-plugin"],
+        "noEmit": true
+    },
+}
