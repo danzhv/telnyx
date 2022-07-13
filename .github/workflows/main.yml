@@ -1,0 +1,41 @@
+name: Main Github Actions
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - 'main'
+jobs:
+  test_suite:
+      runs-on: ubuntu-20.04
+      steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16.9.1'
+      - run: npm ci
+      - name: run test
+        run: npx cypress run --spec "**/*.spec.js" --env allure=true
+      - name: Copy History
+        if: always()
+        run: cp -r $(pwd)/docs/history/. $(pwd)/allure-results/history
+      - name: Generate Report
+        if: always()
+        run: allure serve
+      - name: Upload Results
+        uses: actions/upload-artifact@v1
+        if: always()
+        with:
+          name: allure-results
+          path: ./allure-results                   
+      - name: Publishing Allure artifact to Github Actions
+        uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: allure-report
+          path: allure-report       
+      - name: Deploy report
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        if: always()
+        with:
+          branch: main
+          folder: allure-report
