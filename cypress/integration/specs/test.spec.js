@@ -15,7 +15,7 @@ describe("Telnyx test", () =>{
         } else {}
         })
     })
-    it('should verify signup with valid credentials', function()
+    xit('should verify signup with valid credentials', function()
     {
         signupPage.signup(basePage.generateText('withoutSymbols', 10) + '@gmail.com', basePage.generateText('withoutSymbols', 20), basePage.generateText('full', 60));
         signupPage.mailSentMessage().should('be.visible');
@@ -85,7 +85,7 @@ describe("Telnyx test", () =>{
         loginPage.MicrosoftLogin('daniltest685@gmail.com', 'test04If!asdf');
         basePage.checkIfLinkContains('/app/home');
     })*/
-    it('should login with LinkedIn with valid credentials', function()
+    xit('should login with LinkedIn with valid credentials', function()
     {
         loginPage.LinkedInLogin('daniltest685@gmail.com', 'test04If!asdf');
         basePage.checkIfLinkContains('/app/');
@@ -228,7 +228,7 @@ describe("Telnyx test", () =>{
         mainPage.clickWrapperItem1();
         mainPage.clickWrapperItem2();
     })
-    it('should verify how much will you save voice slider', function(){
+    xit('should verify how much will you save voice slider', function(){
         mainPage.scrollToHowMuchWillYouSave();
         mainPage.clickSliderButton('Voice')
         for(let j = 0; j < 2; j++){
@@ -239,7 +239,7 @@ describe("Telnyx test", () =>{
         mainPage.clickCreateFreeTrialAccountButton();
         basePage.checkIfLinkContains('sign-up');
     })
-    it('should verify how much will you save sms slider', function(){
+    xit('should verify how much will you save sms slider', function(){
         mainPage.scrollToHowMuchWillYouSave();
         mainPage.clickSliderButton('SMS')
         for(let j = 0; j < 2; j++){
