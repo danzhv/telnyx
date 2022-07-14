@@ -15,9 +15,6 @@ jobs:
       - run: npm ci
       - name: run test
         run: npx cypress run --spec "**/*.spec.js" --env allure=true
-      - name: Copy History
-        if: always()
-        run: cp -r $(pwd)/docs/history/. $(pwd)/allure-results/history
       - name: Generate Report
         if: always()
         run: allure serve
@@ -32,10 +29,4 @@ jobs:
         if: always()
         with:
           name: allure-report
-          path: allure-report       
-      - name: Deploy report
-        uses: JamesIves/github-pages-deploy-action@4.1.4
-        if: always()
-        with:
-          branch: main
-          folder: allure-report
+          path: allure-report
